@@ -14,7 +14,7 @@
 5. [إدارة الفروع وطلبات الدمج (Branching & PRs)](#section-5)
 6. [التعاون والمساهمة في المشاريع](#section-6)
 7. [احتراف واجهة وميزات GitHub](#section-7)
-8. [أخطاء شائعة وحلولها (Troubleshooting)](section-8#)
+8. [أخطاء شائعة وحلولها (Troubleshooting)](#section-8)
 9. [المرجع السريع لأوامر Git (Cheat Sheet)](#section-9)
 10. [فريق العمل](#section-10)
 
