@@ -57,7 +57,7 @@
 ### تحميل VS Code
 * [رابط تحميل VS Code ](https://code.visualstudio.com/download)
 
-### طريقة إنشاء حساب احترافي على منصة GitHub
+
 [⬆️ العودة إلى الفهرس](#toc)
 
 ---
