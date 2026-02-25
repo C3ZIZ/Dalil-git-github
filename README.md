@@ -52,7 +52,7 @@
 ![ الخطوة الاولى](images/install-git1.png)
 ### التحميل لنظام ويندوز
 ![ ](images/install-git-windows1.png)
-### للتحميل لنظام mac os 
+### للتحميل لنظام Mac OS 
 * [فيديو الشرح ](https://youtu.be/KplS0y0Mx00?si=XjT3HeNR-fZFeV4q)
 ### تحميل vs code
 * [رابط تحميل vs code ](https://code.visualstudio.com/download)
