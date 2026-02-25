@@ -51,6 +51,8 @@
 ![ الخطوة الاولى](images/install-git1.png)
 ### التحميل لنظام ويندوز
 ![ ](images/install-git-windows1.png)
+### للتحميل لنظام mac os 
+* [اتبع الشرح](https://youtu.be/KplS0y0Mx00?si=XjT3HeNR-fZFeV4q)
 
 * [تحميل برنامج VS Code](https://code.visualstudio.com/download)
 ### طريقة إنشاء حساب احترافي على منصة GitHub
