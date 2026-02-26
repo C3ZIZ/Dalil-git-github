@@ -367,7 +367,7 @@ git push origin feature/github-tips
 
 5. **المراجعة (PR):** افتح Pull Request في مستودع `dalil-git-github`، خلي زملائك يراجعونه، وبعد الموافقة يتم دمجه في `main` وحذف الفرع القديم لأن مهمته انتهت.
 
-[⬆️ العودة إلى الفهرس](https://www.google.com/search?q=%23toc)
+[⬆️ العودة إلى الفهرس](#toc)
 
 ---
 
