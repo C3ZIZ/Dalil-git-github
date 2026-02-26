@@ -496,8 +496,6 @@ git push origin fix-typo-in-readme
 ## 9. فريق العمل
 
 تم إنشاء هذا الدليل بواسطة:
-* **[اسم العضو 1]** - (يمكنك إضافة رابط حسابه على GitHub هنا)
-
 * **[عبدالله ابوشطيره]** - (https://github.com/abodee198)
 * **عزام عبدالله** - (https://github.com/AMT72)
 * **[أصيل حسن]** - (https://github.com/Aseel-Alzahrani)
