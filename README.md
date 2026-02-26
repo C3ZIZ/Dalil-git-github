@@ -15,8 +15,8 @@
 6. [التعاون والمساهمة في المشاريع](#section-6)
 7. [احتراف واجهة وميزات GitHub](#section-7)
 8. [أخطاء شائعة وحلولها (Troubleshooting)](#section-8)
-9. [المرجع السريع لأوامر Git (Cheat Sheet)](#section-9)
-10. [فريق العمل](#section-10)
+9. [فريق العمل](#section-9)
+
 
 ---
 
@@ -489,19 +489,13 @@ git push origin fix-typo-in-readme
 ---
 
 
+
+
+
 <a id="section-9"></a>
-## 9. المرجع السريع لأوامر Git (Cheat Sheet)
-
-[⬆️ العودة إلى الفهرس](#toc)
-
----
-
-<a id="section-10"></a>
-## 10. فريق العمل
+## 9. فريق العمل
 
 تم إنشاء هذا الدليل بواسطة:
-* **[اسم العضو 1]** - (يمكنك إضافة رابط حسابه على GitHub هنا)
-
 * **[عبدالله ابوشطيره]** - (https://github.com/abodee198)
 * **عزام عبدالله** - (https://github.com/AMT72)
 * **[أصيل حسن]** - (https://github.com/Aseel-Alzahrani)
