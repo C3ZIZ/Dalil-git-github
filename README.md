@@ -432,7 +432,7 @@ git push origin fix-typo-in-readme
 4. اضغط **Create pull request**.
 5. الآن أصحاب المشروع بيراجعون كودك، وإذا كان شغلك ممتاز راح يسوون له (Merge) ويدمجونه في مشروعهم، ومبروك! صار اسمك مسجل كمساهم (Contributor) في المشروع!
 
-[⬆️ العودة إلى الفهرس](https://www.google.com/search?q=%23toc)
+[⬆️ العودة إلى الفهرس](#toc)
 
 ---
 
