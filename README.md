@@ -419,7 +419,7 @@ git push origin feature/github-tips
 ## 10. فريق العمل
 
 تم إنشاء هذا الدليل بواسطة:
-* **[اسم العضو 1]** - (يمكنك إضافة رابط حسابه على GitHub هنا)
+* **عبدالعزيز حافظ** - (https://github.com/C3ZIZ)
 * **عزام عبدالله** - (https://github.com/AMT72)
 * **[أصيل حسن]** - (https://github.com/Aseel-Alzahrani)
 
