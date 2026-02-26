@@ -420,6 +420,7 @@ git push origin feature/github-tips
 
 تم إنشاء هذا الدليل بواسطة:
 * **عبدالعزيز حافظ** - (https://github.com/C3ZIZ)
+* **[عبدالله ابوشطيره]** - (https://github.com/abodee198)
 * **عزام عبدالله** - (https://github.com/AMT72)
 * **[أصيل حسن]** - (https://github.com/Aseel-Alzahrani)
 
