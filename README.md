@@ -420,7 +420,7 @@ git push origin feature/github-tips
 
 تم إنشاء هذا الدليل بواسطة:
 * **[اسم العضو 1]** - (يمكنك إضافة رابط حسابه على GitHub هنا)
-* **[اسم العضو 2]** - (يمكنك إضافة رابط حسابه على GitHub هنا)
+* **عزام عبدالله** - (https://github.com/AMT72)
 * **[أصيل حسن]** - (https://github.com/Aseel-Alzahrani)
 
 [⬆️ العودة إلى الفهرس](#toc)
