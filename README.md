@@ -188,12 +188,16 @@
 
 * [تحميل برنامج Git](https://git-scm.com/downloads)
  بعد الدخول اتبع الخطوات 
+ ###
 ![ الخطوة الاولى](images/install-git1.png)
 ### التحميل لنظام ويندوز
 ![ ](images/install-git-windows1.png)
+### للتحميل لنظام Mac OS 
+* [فيديو الشرح ](https://youtu.be/KplS0y0Mx00?si=XjT3HeNR-fZFeV4q)
+### تحميل VS Code
+* [رابط تحميل VS Code ](https://code.visualstudio.com/download)
 
-* [تحميل برنامج VS Code](https://code.visualstudio.com/download)
-### طريقة إنشاء حساب احترافي على منصة GitHub
+
 [⬆️ العودة إلى الفهرس](#toc)
 
 ---
@@ -497,7 +501,10 @@ git push origin fix-typo-in-readme
 
 تم إنشاء هذا الدليل بواسطة:
 * **[اسم العضو 1]** - (يمكنك إضافة رابط حسابه على GitHub هنا)
+
+* **[عبدالله ابوشطيره]** - (https://github.com/abodee198)
 * **عزام عبدالله** - (https://github.com/AMT72)
 * **[أصيل حسن]** - (https://github.com/Aseel-Alzahrani)
+
 
 [⬆️ العودة إلى الفهرس](#toc)
