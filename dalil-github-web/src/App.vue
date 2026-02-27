@@ -85,6 +85,7 @@ watch(
 
       <nav class="top-nav" aria-label="التنقل الرئيسي">
         <RouterLink to="/" class="nav-link">الرئيسية</RouterLink>
+        <RouterLink to="/readme" class="nav-link">README</RouterLink>
         <RouterLink to="/sections" class="nav-link">الأقسام</RouterLink>
         <RouterLink to="/cheat-sheet" class="nav-link">Cheat Sheet</RouterLink>
         <RouterLink to="/references" class="nav-link">المراجع</RouterLink>

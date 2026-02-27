@@ -5,6 +5,7 @@ import { guideSections, teamMembers } from '../data/guideContent'
 import { readmeFullContent } from '../data/readmeFullContent'
 
 const route = useRoute()
+const repositoryRawBase = 'https://raw.githubusercontent.com/c3ziz/Dalil-git-github/main/'
 
 const section = computed(() => guideSections.find((item) => item.id === route.params.id))
 const sourceContent = computed(() => {
@@ -13,6 +14,40 @@ const sourceContent = computed(() => {
 })
 
 const normalizeHeading = (text) => text.replace(/^\*+|\*+$/g, '').trim()
+
+const resolveImageSrc = (path) => {
+  if (!path) return ''
+  if (/^https?:\/\//i.test(path)) return path
+
+  const cleanedPath = path.replace(/^\.\//, '').trim()
+  if (cleanedPath.startsWith('images/')) {
+    return `${repositoryRawBase}${cleanedPath}`
+  }
+
+  return cleanedPath
+}
+
+const parseImageLine = (line) => {
+  const markdownMatch = line.match(/^!\[(.*?)\]\((.+?)\)$/)
+  if (markdownMatch) {
+    const [, altText, srcPath] = markdownMatch
+    return {
+      alt: altText?.trim() || 'صورة توضيحية',
+      src: resolveImageSrc(srcPath),
+    }
+  }
+
+  const customMatch = line.match(/^!\s*(.*?)\s+(images\/[^\s]+\.(?:png|jpe?g|gif|webp|svg))$/i)
+  if (customMatch) {
+    const [, altText, srcPath] = customMatch
+    return {
+      alt: altText?.trim() || 'صورة توضيحية',
+      src: resolveImageSrc(srcPath),
+    }
+  }
+
+  return null
+}
 
 const looksLikeHeading = (line, subsectionSet) => {
   if (!line) return false
@@ -56,6 +91,7 @@ const organizedBlocks = computed(() => {
     heading: section.value.title,
     paragraphs: [],
     bullets: [],
+    images: [],
     codeBlocks: [],
   }
 
@@ -76,8 +112,15 @@ const organizedBlocks = computed(() => {
         heading: normalizeHeading(line),
         paragraphs: [],
         bullets: [],
+        images: [],
         codeBlocks: [],
       }
+      return
+    }
+
+    const imageEntry = parseImageLine(line)
+    if (imageEntry) {
+      current.images.push(imageEntry)
       return
     }
 
@@ -138,6 +181,11 @@ const organizedBlocks = computed(() => {
         <ul v-if="block.bullets?.length" class="detail-list">
           <li v-for="bullet in block.bullets" :key="bullet">{{ bullet }}</li>
         </ul>
+
+        <figure v-for="image in block.images || []" :key="image.src" class="content-image-wrap">
+          <img :src="image.src" :alt="image.alt" class="content-image" loading="lazy" />
+          <figcaption>{{ image.alt }}</figcaption>
+        </figure>
 
         <pre v-for="code in block.codeBlocks || []" :key="code" class="source-code"><code>{{ code }}</code></pre>
       </section>

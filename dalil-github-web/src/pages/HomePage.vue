@@ -16,24 +16,9 @@ const cheatPreview = gitCheatSheetCategories.slice(0, 3)
 
     <div class="hero-actions">
       <RouterLink to="/sections" class="cta-button">استعراض جميع الأقسام</RouterLink>
-      <RouterLink to="/quiz/general" class="ghost-button">ابدأ Quiz عام</RouterLink>
+      <RouterLink to="/readme" class="ghost-button">README</RouterLink>
+      <RouterLink to="/cheat-sheet" class="ghost-button">Cheat Sheet</RouterLink>
       <RouterLink to="/team" class="ghost-button">تعرف على فريق العمل</RouterLink>
-    </div>
-  </section>
-
-  <section class="glass" data-reveal>
-    <h2>اختبر نفسك</h2>
-    <div class="cards-grid">
-      <article class="feature-card" data-reveal>
-        <h3>Quiz 1 — General Knowledge</h3>
-        <p>10 أسئلة عشوائية من بنك 30+ سؤال مع الإجابة الصحيحة والشرح.</p>
-        <RouterLink to="/quiz/general" class="inline-link">ابدأ الآن</RouterLink>
-      </article>
-      <article class="feature-card" data-reveal>
-        <h3>Quiz 2 — تحدي المهندسين</h3>
-        <p>سيناريوهات واقعية لاختيار أفضل قرار هندسي مع تفسير عملي.</p>
-        <RouterLink to="/quiz/engineer" class="inline-link">جرّب السيناريوهات</RouterLink>
-      </article>
     </div>
   </section>
 

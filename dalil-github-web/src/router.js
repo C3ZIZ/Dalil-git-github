@@ -7,6 +7,7 @@ import GeneralQuizPage from './pages/GeneralQuizPage.vue'
 import EngineerQuizPage from './pages/EngineerQuizPage.vue'
 import CheatSheetPage from './pages/CheatSheetPage.vue'
 import ReferencesPage from './pages/ReferencesPage.vue'
+import ReadmePage from './pages/ReadmePage.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,7 @@ const router = createRouter({
     { path: '/sections/:id', name: 'section-detail', component: SectionDetailPage },
     { path: '/cheat-sheet', name: 'cheat-sheet', component: CheatSheetPage },
     { path: '/references', name: 'references', component: ReferencesPage },
+    { path: '/readme', name: 'readme', component: ReadmePage },
     { path: '/quiz/general', name: 'quiz-general', component: GeneralQuizPage },
     { path: '/quiz/engineer', name: 'quiz-engineer', component: EngineerQuizPage },
     { path: '/team', name: 'team', component: TeamPage },
