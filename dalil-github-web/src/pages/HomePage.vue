@@ -30,7 +30,7 @@ const cheatPreview = gitCheatSheetCategories.slice(0, 3)
         <RouterLink to="/quiz/general" class="inline-link">ابدأ الآن</RouterLink>
       </article>
       <article class="feature-card" data-reveal>
-        <h3>Quiz 2 — المهندس الكبير</h3>
+        <h3>Quiz 2 — تحدي المهندسين</h3>
         <p>سيناريوهات واقعية لاختيار أفضل قرار هندسي مع تفسير عملي.</p>
         <RouterLink to="/quiz/engineer" class="inline-link">جرّب السيناريوهات</RouterLink>
       </article>

@@ -3,6 +3,7 @@ import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 const route = useRoute()
+const currentYear = new Date().getFullYear()
 const storedTheme = localStorage.getItem('guide-theme')
 const theme = ref(storedTheme === 'light' ? 'light' : 'dark')
 
@@ -86,8 +87,9 @@ watch(
         <RouterLink to="/" class="nav-link">الرئيسية</RouterLink>
         <RouterLink to="/sections" class="nav-link">الأقسام</RouterLink>
         <RouterLink to="/cheat-sheet" class="nav-link">Cheat Sheet</RouterLink>
+        <RouterLink to="/references" class="nav-link">المراجع</RouterLink>
         <RouterLink to="/quiz/general" class="nav-link">Quiz عام</RouterLink>
-        <RouterLink to="/quiz/engineer" class="nav-link">المهندس الكبير</RouterLink>
+        <RouterLink to="/quiz/engineer" class="nav-link">تحدي المهندسين</RouterLink>
         <RouterLink to="/team" class="nav-link">فريق العمل</RouterLink>
       </nav>
 
@@ -101,7 +103,7 @@ watch(
     </main>
 
     <footer class="site-footer">
-      <p>© 2026 Dalil GitHub - عزيز الرهيب</p>
+      <p class="footer-main">© {{ currentYear }} Dalil GitHub × Pathy <span class="footer-heart">❤️</span> عزيز الرهيب</p>
     </footer>
   </div>
 </template>
