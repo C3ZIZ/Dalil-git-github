@@ -1,11 +1,116 @@
 <script setup>
 import { computed } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
-import { guideSections } from '../data/guideContent'
+import { guideSections, teamMembers } from '../data/guideContent'
+import { readmeFullContent } from '../data/readmeFullContent'
 
 const route = useRoute()
 
 const section = computed(() => guideSections.find((item) => item.id === route.params.id))
+const sourceContent = computed(() => {
+  if (!section.value) return null
+  return readmeFullContent[section.value.id] || null
+})
+
+const normalizeHeading = (text) => text.replace(/^\*+|\*+$/g, '').trim()
+
+const looksLikeHeading = (line, subsectionSet) => {
+  if (!line) return false
+  if (subsectionSet.has(line)) return true
+  if (/^\*.+\*$/.test(line)) return true
+  if (/^[📌📍📂📄📁🚀🛠️🤖🖥️💡⚠️].+/.test(line)) return true
+  if (/^[0-9]+\.\s+.+/.test(line) && line.length < 90) return true
+  if (line.endsWith(':') && line.length < 100) return true
+  return false
+}
+
+const organizedBlocks = computed(() => {
+  if (!section.value) return []
+
+  if (!sourceContent.value?.blocks?.length) {
+    return []
+  }
+
+  const subsectionSet = new Set(section.value.subsections || [])
+  const lines = []
+
+  sourceContent.value.blocks.forEach((block) => {
+    ;(block.paragraphs || []).forEach((paragraph) => {
+      if (paragraph?.trim()) lines.push(paragraph.trim())
+    })
+    ;(block.bullets || []).forEach((bullet) => {
+      if (bullet?.trim()) lines.push(bullet.trim())
+    })
+    ;(block.codeBlocks || []).forEach((codeBlock) => {
+      codeBlock
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .forEach((line) => lines.push(line))
+    })
+  })
+
+  const result = []
+  let current = {
+    id: 'organized-0',
+    heading: section.value.title,
+    paragraphs: [],
+    bullets: [],
+    codeBlocks: [],
+  }
+
+  const pushCurrent = () => {
+    if (current.paragraphs.length || current.bullets.length || current.codeBlocks.length) {
+      result.push(current)
+    }
+  }
+
+  lines.forEach((line, index) => {
+    const isSectionTitleLine = line === `${section.value.number}. ${section.value.title}` || line === section.value.title
+    if (isSectionTitleLine) return
+
+    if (looksLikeHeading(line, subsectionSet)) {
+      pushCurrent()
+      current = {
+        id: `organized-${result.length}`,
+        heading: normalizeHeading(line),
+        paragraphs: [],
+        bullets: [],
+        codeBlocks: [],
+      }
+      return
+    }
+
+    const looksLikeCommand = /^(git|mkdir|touch|pwd|ls|cd|cp|mv|rm)\b/.test(line)
+    if (looksLikeCommand) {
+      const lastCodeIndex = current.codeBlocks.length - 1
+      if (lastCodeIndex >= 0) {
+        current.codeBlocks[lastCodeIndex] = `${current.codeBlocks[lastCodeIndex]}\n${line}`
+      } else {
+        current.codeBlocks.push(line)
+      }
+      return
+    }
+
+    const isBulletLike = /^[-*]\s+/.test(line)
+    if (isBulletLike) {
+      current.bullets.push(line.replace(/^[-*]\s+/, '').trim())
+      return
+    }
+
+    current.paragraphs.push(line)
+
+    if (index === lines.length - 1) {
+      pushCurrent()
+    }
+  })
+
+  if (!result.length && (current.paragraphs.length || current.bullets.length || current.codeBlocks.length)) {
+    result.push(current)
+  }
+
+  return result
+})
 </script>
 
 <template>
@@ -13,9 +118,30 @@ const section = computed(() => guideSections.find((item) => item.id === route.pa
     <h2>{{ section.number }}. {{ section.title }}</h2>
     <p class="section-intro">{{ section.summary }}</p>
 
-    <ul class="detail-list">
-      <li v-for="point in section.points" :key="point" data-reveal>{{ point }}</li>
-    </ul>
+    <section v-if="section.id === 'team'" class="detail-block" data-reveal>
+      <h3>الأشخاص الذين قاموا بإعداد هذا الدليل</h3>
+      <div class="team-grid">
+        <article v-for="member in teamMembers" :key="member.name" class="member-card" data-reveal>
+          <div class="member-avatar">{{ member.name.charAt(0) }}</div>
+          <h3>{{ member.name }}</h3>
+          <a :href="member.url" target="_blank" rel="noopener" class="inline-link">GitHub Profile</a>
+        </article>
+      </div>
+    </section>
+
+    <template v-if="section.id !== 'team'">
+      <section v-for="block in organizedBlocks" :key="block.id" class="detail-block" data-reveal>
+        <h3>{{ block.heading }}</h3>
+
+        <p v-for="paragraph in block.paragraphs || []" :key="paragraph">{{ paragraph }}</p>
+
+        <ul v-if="block.bullets?.length" class="detail-list">
+          <li v-for="bullet in block.bullets" :key="bullet">{{ bullet }}</li>
+        </ul>
+
+        <pre v-for="code in block.codeBlocks || []" :key="code" class="source-code"><code>{{ code }}</code></pre>
+      </section>
+    </template>
 
     <div class="hero-actions">
       <RouterLink to="/sections" class="ghost-button">العودة إلى الأقسام</RouterLink>

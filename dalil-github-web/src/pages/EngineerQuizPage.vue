@@ -34,7 +34,7 @@ generateQuiz()
 
 <template>
   <section class="glass" data-reveal>
-    <h2>Quiz 2 — المهندس الكبير</h2>
+    <h2>Quiz 2 — تحدي المهندسين</h2>
     <p class="section-intro">
       سيناريوهات حقيقية من بيئة العمل البرمجية. المطلوب اختيار أفضل تصرف هندسي، ثم مراجعة أفضل
       إجابة مع السبب.
