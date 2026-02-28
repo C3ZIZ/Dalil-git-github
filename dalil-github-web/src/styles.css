@@ -313,6 +313,21 @@ body.light code {
   font-size: 20px;
 }
 
+.inline-url-link {
+  color: var(--mint-500);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  word-break: break-word;
+}
+
+.inline-url-link:hover {
+  color: var(--blue-500);
+}
+
+body.light .inline-url-link {
+  color: #0b4ea2;
+}
+
 .content-image-wrap {
   margin: 12px 0;
 }

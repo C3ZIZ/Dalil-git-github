@@ -15,6 +15,30 @@ const sourceContent = computed(() => {
 
 const normalizeHeading = (text) => text.replace(/^\*+|\*+$/g, '').trim()
 
+const escapeHtml = (value) =>
+  String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+
+const linkifyInlineText = (text) => {
+  if (!text) return ''
+
+  let safeText = escapeHtml(text)
+
+  safeText = safeText.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (_match, label, url) => {
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="inline-url-link">${label}</a>`
+  })
+
+  safeText = safeText.replace(/(^|\s)(https?:\/\/[^\s<]+)/g, (_match, spacing, url) => {
+    return `${spacing}<a href="${url}" target="_blank" rel="noopener noreferrer" class="inline-url-link">${url}</a>`
+  })
+
+  return safeText
+}
+
 const resolveImageSrc = (path) => {
   if (!path) return ''
   if (/^https?:\/\//i.test(path)) return path
@@ -52,6 +76,7 @@ const parseImageLine = (line) => {
 const looksLikeHeading = (line, subsectionSet) => {
   if (!line) return false
   if (subsectionSet.has(line)) return true
+  if (/^الخطوة\s+[0-9]+\s*:/.test(line)) return true
   if (/^\*.+\*$/.test(line)) return true
   if (/^[📌📍📂📄📁🚀🛠️🤖🖥️💡⚠️].+/.test(line)) return true
   if (/^[0-9]+\.\s+.+/.test(line) && line.length < 90) return true
@@ -176,10 +201,10 @@ const organizedBlocks = computed(() => {
       <section v-for="block in organizedBlocks" :key="block.id" class="detail-block" data-reveal>
         <h3>{{ block.heading }}</h3>
 
-        <p v-for="paragraph in block.paragraphs || []" :key="paragraph">{{ paragraph }}</p>
+        <p v-for="paragraph in block.paragraphs || []" :key="paragraph" v-html="linkifyInlineText(paragraph)"></p>
 
         <ul v-if="block.bullets?.length" class="detail-list">
-          <li v-for="bullet in block.bullets" :key="bullet">{{ bullet }}</li>
+          <li v-for="bullet in block.bullets" :key="bullet" v-html="linkifyInlineText(bullet)"></li>
         </ul>
 
         <figure v-for="image in block.images || []" :key="image.src" class="content-image-wrap">
