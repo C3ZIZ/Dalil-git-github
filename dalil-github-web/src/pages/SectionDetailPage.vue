@@ -76,6 +76,7 @@ const parseImageLine = (line) => {
 const looksLikeHeading = (line, subsectionSet) => {
   if (!line) return false
   if (subsectionSet.has(line)) return true
+  if (/^الخطوة\s+[0-9]+\s*:/.test(line)) return true
   if (/^\*.+\*$/.test(line)) return true
   if (/^[📌📍📂📄📁🚀🛠️🤖🖥️💡⚠️].+/.test(line)) return true
   if (/^[0-9]+\.\s+.+/.test(line) && line.length < 90) return true
