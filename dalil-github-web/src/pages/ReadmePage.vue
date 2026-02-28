@@ -5,6 +5,7 @@ import { marked } from 'marked'
 const repositoryUrl = 'https://github.com/c3ziz/Dalil-git-github'
 const githubReadmeApi = 'https://api.github.com/repos/c3ziz/Dalil-git-github/readme'
 const readmeSources = [
+  '/README.md',
   'https://raw.githubusercontent.com/c3ziz/Dalil-git-github/main/README.md',
   'https://raw.githubusercontent.com/c3ziz/Dalil-git-github/master/README.md',
 ]
@@ -84,13 +85,15 @@ const loadReadme = async () => {
   error.value = ''
 
   try {
-    let readmePayload = await tryGithubApiReadme()
+    let readmePayload = null
+
+    for (const source of readmeSources) {
+      readmePayload = await tryFetchText(source)
+      if (readmePayload) break
+    }
 
     if (!readmePayload) {
-      for (const source of readmeSources) {
-        readmePayload = await tryFetchText(source)
-        if (readmePayload) break
-      }
+      readmePayload = await tryGithubApiReadme()
     }
 
     if (!readmePayload?.markdownText) throw new Error('تعذر تحميل README من كل المصادر')

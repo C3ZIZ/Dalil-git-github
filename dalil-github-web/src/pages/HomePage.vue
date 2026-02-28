@@ -2,8 +2,9 @@
 import { RouterLink } from 'vue-router'
 import { guideSections, gitCheatSheetCategories, quickGitCommands } from '../data/guideContent'
 
-const spotlightSections = guideSections.slice(0, 6)
+const spotlightSections = guideSections.slice(0, 4)
 const cheatPreview = gitCheatSheetCategories.slice(0, 3)
+const githubEducationSection = guideSections.find((section) => section.id === 'github-education')
 </script>
 
 <template>
@@ -63,6 +64,23 @@ const cheatPreview = gitCheatSheetCategories.slice(0, 3)
         <code>{{ item.cmd }}</code>
         <p>{{ item.desc }}</p>
       </article>
+    </div>
+  </section>
+
+  <section v-if="githubEducationSection" class="glass" data-reveal>
+    <h2>{{ githubEducationSection.number }}. {{ githubEducationSection.title }}</h2>
+    <p class="section-intro">{{ githubEducationSection.summary }}</p>
+    <div class="hero-actions">
+      <RouterLink :to="`/sections/${githubEducationSection.id}`" class="cta-button"
+        >عرض خطوات التفعيل</RouterLink
+      >
+      <a
+        href="https://github.com/settings/education/benefits"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ghost-button"
+        >فتح صفحة التقديم الرسمية</a
+      >
     </div>
   </section>
 </template>
